@@ -1,0 +1,322 @@
+@import url(./global.css);
+
+/*hero section */
+.hero{
+    background: linear-gradient(to right, rgba(0,0,0,0.4), rgba(0,0,0,0.1)), 
+    url(../images/11.jpg);
+    height: 105vh;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: -100px;
+}
+.hero_content{
+    color: var(--white);
+    padding: 1rem;
+}
+.hero_content h1{
+    font-size: clamp(2rem, 5vw, 7rem);
+    text-transform: uppercase;
+    text-align: center;
+}
+.hero_content p{
+    font-size: clamp(1rem, 4vw, 2.5rem);
+    margin: 3rem  0;
+    text-align: center;
+}
+.buttons{    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.button1{
+    display: flex;
+    border: none;
+    border-radius: 20px;
+    background: var(--white);
+    color: var(--black);
+}
+/* about section */
+.about,
+.reservations{
+    padding: 1rem calc((100vw - 1500px) / 2);
+}
+.about_container,
+.reservation_container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 1rem calc((100vw - 1200px) / 2);
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.about_img,
+.reservations_img{
+    width: 100%;
+    height: 100vh;
+}
+.topline{
+    color: var(--red);
+    margin-bottom: 3rem;
+    font-size: clamp(1.5rem, 3vw, 2rem);   
+    font-weight: bolder;
+    position: relative;
+}
+
+.topline::after{
+    content: "";
+    width: 100px;
+    height: .3rem;
+    background-color: var(--red);
+    position: absolute;
+    bottom: -.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.about_info{
+    padding: 1rem;
+    color: var(--black);
+    line-height: 2;
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    margin-left: 50px;
+}
+.button2{
+    display: flex;
+    margin-top: 3rem;
+    margin-left: 20px;
+    border: 2px solid black;
+    color: var(--black);
+}
+.button2:hover{
+    background: var(--black);
+    color: var(--white);
+}
+.button2 img{
+    margin: 0 10px;
+}
+@media screen and (max-width: 350px){
+    .cta,
+    .about_info{
+        padding: 1rem;
+    }
+    .button1,
+    .button2{
+    padding: .8rem 1.5rem;
+    font-size: .8rem;}
+    .menu_img{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .about_container,
+    .reservation_container{
+        grid-template-columns: 1fr;
+        text-align: center
+    }
+    .about_img,
+    .reservations_img{
+        display: none;
+    }
+    .button2{
+        margin: 20px 0;
+    }
+    .topline{
+        margin-bottom: 10px;
+    }
+    .about_info{
+        margin-left: 0px;
+    }
+    .cta_content{
+        padding: 1rem;
+    }
+}
+.cta{
+    background: linear-gradient(to right, rgba(0,0,0,0.4), rgba(0,0,0,0.1)), 
+    url(../images/34.jpg) ;
+    background-size: cover;
+    background-position: center;
+    height: 450px;
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin:0 -20px;
+    margin-top: -17px;
+    padding:0 20px;
+}
+.cta h1{
+    font-size: clamp(1.5rem, 5vw, 4rem);
+}
+.cta p{
+    margin-top: 20px;
+    font-size: clamp(.8rem, 5vw, 2rem);
+    font-weight: lighter;
+}
+button {
+    border: none;
+    margin-top: 50px;
+    width: 200px;
+    height: 50px;
+    background: var(--white);
+}
+button a{
+    font-weight: bold;
+    font-size: clamp(.5rem, 5vw, 1rem);
+    color: var(--black);
+}
+button:hover{
+    background: var(--red);
+}
+button a:hover{
+    color: var(--white);
+}
+/*menu section */
+.menu{
+    padding: 3rem calc((100vw - 1300px) / 2);
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+.menu_info{
+    padding: 20px 50px;
+}
+.menu p{
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    margin-top: 20px;
+}
+.menu p :nth-child(2){
+    margin-bottom: 100px;
+}
+
+
+.menu_title{
+    margin-top: 100px;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: var(--red);
+    font-size: 5rem;
+    text-decoration: underline;
+}
+
+.menu_item{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 1rem;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px dotted var(--black);
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.item_name,
+.item_price{
+    font-size: .5rem;
+    text-transform: lowercase;
+}
+
+.menu_img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+@media screen and (min-width: 800px) {
+    .menu_items{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        opacity: 70%;
+    }
+    .menu_item:hover{
+        opacity: 100%;
+        font-weight: bolder;
+    }
+    .item_name,
+    .item_price{
+        font-size: .2rem;
+        text-transform: lowercase;
+    }
+    .menu_title{
+        margin-top: 100px;
+        margin-bottom: 50px;
+        text-transform: lowercase;
+        font-weight: bold;
+        color: var(--black);
+        text-decoration: none;
+    }
+    .testimonial_text{
+        width: 80vw;
+        margin-left: 15%;
+    }
+}
+/* testimonials section*/
+.testimonials{
+    background: linear-gradient(to right, rgba(0,0,0,0.4), rgba(0,0,0,0.1)), 
+    url(../images/7.jpg) ;
+    background-size: cover;
+    background-position: center;
+    color: var(--white);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin:0 -20px;
+    padding: 3rem;
+    position: relative;
+}
+.testimonials_container{
+    padding: 1rem calc((100vw - 900px) / 2);
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+.testimonial_text{
+    width: 50vw;
+    margin-left: 25%;
+}
+.testimonial_img{
+    margin: 30px 0;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+}
+.signoff{
+    color: var(--red);
+    margin: 10px 0;
+    font-family: 'Mistral', sans-serif;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+form input{
+    width: 80%;
+    height: 50px;
+    margin-left: 20px;
+}
+#names{
+    padding-left: 20px;
+    margin-top: 10px;
+}
+.reserve{
+    padding: .5rem 2rem;
+    background: var(--red);
+    border: none;
+    color: var(--white);
+    cursor: pointer;
+}
+.reserve:hover{
+    background: var(--black);
+}

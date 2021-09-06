@@ -1,0 +1,122 @@
+@import url(./global.css);
+.tab_content{
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+/*wrapper*/
+
+/*wrapper*/
+.tabs{
+  padding: 50px 0;
+}
+/*tabs*/
+.tabs ul{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.tabs ul li{
+  padding: 10px 20px;;
+border: 1px solid var(--red);
+  border-radius: 10px;
+text-align: center;
+color: var(--white);
+  margin: 10px;
+text-transform: uppercase;
+font-size: 14px;
+  font-weight: bold;
+letter-spacing: 3px;
+cursor: pointer;
+position: relative;
+}
+.tabs .active{
+  background: var(--red);
+  color: var(--white);
+}
+/*tabs hover*/
+.tabs ul li:hover{
+  background: var(--red);
+  color: var(--white);
+}
+
+.login{
+    background: url(../images/11.jpg);
+    background-position: center;
+    background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.title{
+  font-size: clamp(2rem, 3vw, 3rem);
+  margin-bottom: 10px;
+  color: var(--white);
+}
+.wrapper{
+  width: 90vw;
+  background: linear-gradient(to bottom right,rgba(0,0,0,.8), rgba(0,0,0,.4), rgba(0,0,0,.8));
+  padding: 10px 10px;
+  border-radius: 10px;
+  height: 100%;
+  padding-bottom: 50px;
+  margin: 100px 0;
+}
+form{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+input{
+  width: 80vw;
+  height: 50px;
+  border: 1px solid var(--white);
+  margin-left: 15px;
+  padding-left: 20px;
+  margin-bottom: 20px;
+  background: none;
+  color: var(--white);
+}
+::placeholder{
+  color: var(--white);
+  font-size: 1rem;
+}
+#buttn{
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  background: var(--red);
+  width: 50%;
+  color: var(--white);
+  font-size: 1rem;
+  cursor: pointer;
+  border: none !important;
+}
+
+#buttn:hover{
+  background: var(--black);
+}
+@media screen and (min-width: 800px) {
+  .login{
+    margin-top: -90px;
+  }
+  .wrapper{
+    width: 500px;
+  }
+  input{
+    width: 400px;
+    margin-left: 30px;
+  }
+  .button{
+    width: 30%;
+  }
+}

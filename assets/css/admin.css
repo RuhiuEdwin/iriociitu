@@ -1,0 +1,100 @@
+/*
+    author: Edwin Ruhiu;
+    Food ordering website admin panel;
+    version 1.0;
+*/
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'montesarat, sans-serif';
+}
+a{
+    text-decoration: none;
+}
+.wrapper{
+    padding: 1%;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.text-center{
+    text-align: center;
+}
+.clearfix{
+    float: none;
+    clear: both;
+}
+.menu{
+    text-align: center;
+}
+.menu ul{
+    list-style-type: none;
+}
+.menu ul li{
+    display: inline;
+    padding: 1%;
+}
+.menu ul li a{
+    color: black;
+}
+.menu ul li a:hover{
+    color: red;
+}
+
+.main-content{
+    margin: 1% 0;
+    background: gray;
+    padding: 3% 0;
+}
+.col-4{
+    width: 18%;
+    background: white;
+    margin: 1%;
+    padding: 2%;
+    float: left;
+}
+.tbl-full{
+    width: 100%;
+}
+table tr th{
+    border-bottom: 1px solid black;
+    padding: 1%;
+    text-align: left;
+}
+table tr td{
+    padding: 1%;
+}
+.btn-primary{
+    background: #1e90ff;
+    padding: 1%;
+    color: white;
+    font-weight: bold;
+}
+.btn-primary:hover{
+    background: #3742fa;
+}
+.btn-secondary{
+    background: #2ed573;
+    padding: 1%;
+    color: white;
+    font-weight: bold;
+}
+.btn-secondary:hover{
+    background: #ff6b81
+}
+.btn-danger{
+    background: #ff6b81;
+    padding: 1%;
+    color: white;
+    font-weight: bold;
+}
+.btn-danger:hover{
+    background: #2ed573;
+}
+.footer{
+    background: black;
+    color: white;
+}
+.text-center a{
+    color: red;
+}

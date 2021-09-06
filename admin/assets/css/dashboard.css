@@ -1,0 +1,76 @@
+@import url(global.css);
+.container{
+    min-height: 100vh;
+}
+.sidebar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    padding-top: 20px;
+}
+.back{
+    margin-left: 50px;
+    display: none;
+}
+.right{
+    display: flex;
+    flex-direction: column;
+    margin-right: 50px;
+}
+.sidebar a{
+    color: var(--black);
+}
+.sidebar a:hover{
+    color: var(--red);
+}
+.dashboard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 50px 0;
+}
+.title{
+    color: var(--black);
+    padding: 2rem;
+}
+.wrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+    padding: 0 1rem;
+}
+.admin,
+.users,
+.orders,
+.menu,
+.category{
+    padding: 5rem 1rem;
+    background: var(--red);
+    color: var(--white);
+    font-weight: bold;
+}
+.wrapper h2{
+    margin-top: 10px;
+    color: var(--black);
+}
+@media screen and (min-width: 768px){
+    .wrapper{
+        padding: 5rem 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-gap: 1rem;
+    }
+    .admin,
+    .users,
+    .orders,
+    .menu,
+    .category{
+        padding: 5rem 3rem;
+        background: var(--red);
+        color: var(--white);
+        font-weight: bold;
+    }
+
+}
