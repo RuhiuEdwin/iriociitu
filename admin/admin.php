@@ -38,8 +38,7 @@
                                     <table id="myTable" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Username</th>
-                                                <th>Action</th>								 
+                                                <th>Username</th>					 
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -54,10 +53,7 @@
                                                 {				
                                                 while($rows=mysqli_fetch_array($query))
                                                 {									
-                                                echo ' <tr><td>'.$rows['username'].'</td>	
-                                                <td><a href="delete_users.php?user_del='.$rows['u_id'].'" class="btn btn-danger btn-flat btn-addon btn-xs m-b-10"><i class="fa fa-trash-o" style="font-size:16px"></i>delete</a> 
-                                                <a href="update_users.php?user_upd='.$rows['u_id'].'" " class="btn btn-info btn-flat btn-addon btn-sm m-b-10 m-l-5"><i class="ti-settings"></i>update</a>
-                                                </td></tr>';
+                                                echo ' <tr><td>'.$rows['username'].'</td></tr>';
                                                 }	
                                                 }
                                             ?>

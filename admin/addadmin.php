@@ -1,20 +1,47 @@
 <html>
 <?php
+    session_start();
+    error_reporting(0);
+    include("../connection/connect.php");
 
-session_start();
-error_reporting(0);
-include("../connection/connect.php");
+    if(isset($_POST['submit'] ))
+    {
+        if(empty($_POST['uname']) ||
+            empty($_POST['email'])||
+            empty($_POST['password']))
+            {
+                $error = '<div class="error">
+                    <strong>All fields Required!</strong>
+                </div>';
+            }
+        else
+        {   
+        $check_username= mysqli_query($db, "SELECT username FROM tbl_admin where username = '".$_POST['uname']."' ");
+        $check_email = mysqli_query($db, "SELECT email FROM tbl_admin where email = '".$_POST['email']."' ");
 
-
-if(isset($_POST['submit'] ))
-{
-
-	$mql = "INSERT INTO tbl_admin(username,email,password) VALUES('".$_POST['uname']."','".$_POST['email']."','".md5($_POST['password'])."')";
-	mysqli_query($db, $mql);
-
-}
-
-
+        if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) // Validate email address
+        {
+            $error = '<div class="error"><strong>invalid email!</strong></div>';
+        }
+        elseif(strlen($_POST['password']) < 6)
+        {
+            $error = '<div class="error"><strong>Password must be >=6!</strong></div>';
+        }
+        elseif(mysqli_num_rows($check_username) > 0)
+        {
+            $error = '<div class="error"><strong>Username already exist!</strong></div>';
+        }
+        elseif(mysqli_num_rows($check_email) > 0)
+        {
+            $error = '<div class="error"><strong>email already exist!</strong></div>';
+        }
+        else
+        {
+            $mql = "INSERT INTO tbl_admin (username,email,password) VALUES('".$_POST['uname']."','".$_POST['email']."','".md5($_POST['password'])."')";
+            mysqli_query($db, $mql);
+                $success = 	'<div class="error"><strong>Congrass!</strong> New Admin Added Successfully.</br></div>';}
+        }
+    }
 ?>
     <head>
         <meta charset="UTF-8">

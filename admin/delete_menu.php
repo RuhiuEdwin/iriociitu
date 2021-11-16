@@ -5,7 +5,7 @@ session_start();
 
 
 // sending query
-mysqli_query($db,"DELETE FROM dishes WHERE d_id = '".$_GET['menu_del']."'");
+mysqli_query($db,"DELETE FROM menu WHERE id = '".$_GET['menu_del']."'");
 header("location:menu.php");  
 
 ?>

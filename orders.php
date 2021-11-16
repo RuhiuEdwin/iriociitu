@@ -1,9 +1,8 @@
 <html>
 <?php
-include("./partials/head.php");  //include connection file
-error_reporting(0);  // using to hide undefine undex errors
-session_start(); //start temp session until logout/browser closed
-
+    include("./partials/head.php");  //include connection file
+    error_reporting(0);  // using to hide undefine undex errors
+    session_start(); //start temp session until logout/browser closed
 ?>
     <head>
     <meta charset="UTF-8">
@@ -17,14 +16,9 @@ session_start(); //start temp session until logout/browser closed
     <body>
 	<nav class="navbar">
 		<a href="index.php" class="navbar_logo">irio ciitu</a>
-		<div class="navbar_toggle" id="mobile-menu">
-			<span class="bar"></span>
-			<span class="bar"></span>
-			<span class="bar"></span>
 		</div>
         <div class="navbar_menu">
             <ul>
-			<li><a href="index.php" class="navbar_link">home</a></li>
 			<?php
 						if(empty($_SESSION["user_id"]))
 							{
@@ -33,9 +27,8 @@ session_start(); //start temp session until logout/browser closed
 							}
 						else
 							{
-								echo  '<li ><a href="your_orders.php" class="navbar_link">your orders</a> </li>';
-								echo  '<li ><a href="logout.php" class="navbar_link">logout</a> </li>';
-                                echo '<i class="fa fa-shopping-cart f-s-40" aria-hidden="true"></i>';
+                                echo ' <li><a href="shoppingcart.php" class="navbar_link"><i class="fa fa-shopping-cart f-s-40" aria-hidden="true">cart</i></a></li>';
+                                echo ' <li><a href="" class="navbar_link"><i class="fa fa-shopping-cart f-s-40" aria-hidden="true">user</i></a></li>';
 							}
 
 						?>
@@ -57,235 +50,67 @@ session_start(); //start temp session until logout/browser closed
         <div class="ourfoods">
             <div class="topline">irio ciitu</div>
         </div>
+        <?php
+        if (isset($_POST['add_to_cart'])) {
+            if (isset($_SESSION['cart'])) {
+                $session_array_id = array_column($_SESSION['cart'], "id");
+                if (!in_array($_GET['id'], $session_array_id)){
+                   
+                    $session_array = array(
+                        'id' => $_GET['id'],
+                        "title" => $_POST['title'],
+                        "price" => $_POST['price'],
+                        "quantity" => $_POST['quantity'],
+                    );
+                    $_SESSION['cart'][] = $session_array;
+                } 
+            }
+        }else{
+            $session_array = array(
+                'id' => $_GET['id'],
+                "title" => $_POST['title'],
+                "price" => $_POST['price'],
+                "quantity" => $_POST['quantity'],
+            );
+            $_SESSION['cart'][] = $session_array;
         
+        }
+        ?>
         <div class="wrapper">
-            <!--tabs-->
-            <div class="tabs">
-                <ul>
-                    <?php
-                        $sql="SELECT * FROM category order by c_id desc";
-                        $query=mysqli_query($db,$sql);		
-                        if(!mysqli_num_rows($query) > 0 )
-                        {
-                        echo '<td colspan="7"><center>No caterories</center></td>';
-                        }
-                        else
-                        {				
-                        while($rows=mysqli_fetch_array($query))
-                        {									
-                        echo '<li><span class="text">'.$rows['c_name'].'</span></li>';
-                        }	
-                        }
-                    ?>
-                    <!--active tab-->
-                </ul>
-            </div>
-        
-            <div class="content">
-                <div class="tab_wrap" style="display: block;">
-                            <?php
-                                $sql="SELECT * FROM menu order by id desc";
-                                $query=mysqli_query($db,$sql);		
-                                if(!mysqli_num_rows($query) > 0 )
-                                {
-                                echo '<td colspan="7"><center>No caterories</center></td>';
-                                }
-                                else
-                                {				
-                                while($rows=mysqli_fetch_array($query))
-                                {									
-                                echo '
-                                <div class="tab_content">
-                                    <div class="fooditem">
-                                        <img src="assets/images/menu'.$rows['image'].'">
-                                        <h4 class="food-tittle">'.$rows['title'].'</h4>
-                                        <p class="food-desc">'.$rows['slogan'].'</p>
-                                        <div class="desc">
-                                            <div class="price">'.$rows['price'].'</div>
-                                            <div class="buy">add to cart</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                ';
-                                }	
-                                }
-                            ?>
-                </div>
-                <div class="tab_wrap" style="display: none;">
-                    <div class="tab_content">
-                            <div class="fooditem">
-                                <img src="./assets/images/11.jpg" alt="" class="food-img">
-                                <h4 class="food-tittle">Lorem Ipsum</h4>
-                                <p class="food-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                </p>
-                                <div class="desc">
-                                    <div class="price">$15</div>
-                                    <div class="buy">add to cart</div>
-                                </div>
-                            </div>
-                            <div class="fooditem">
-                                <img src="./assets/images/16.jpg" alt="" class="food-img">
-                                <h4 class="food-tittle">Lorem Ipsum</h4>
-
-
-                                <p class="food-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                </p>
-                                <div class="desc">
-                                    <div class="price">$5</div>
-                                    <div class="buy">add to cart</div>
-                                </div>
-                            </div>
-                            <div class="fooditem">
-                                <img src="./assets/images/14.jpg" alt="" class="food-img">
-                                <h4 class="food-tittle">Lorem Ipsum</h4>
-
-
-
-                                <p class="food-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                </p>
-                                <div class="desc">
-                                    <div class="price">$15</div>
-                                    <div class="buy">add to cart</div>
-                                </div>
-                            </div>
-                            <div class="fooditem">
-                                <img src="./assets/images/21.jpg" alt="" class="food-img">
-                                <h4 class="food-tittle">Lorem Ipsum</h4>
-
-
-                                <p class="food-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                </p>
-                                <div class="desc">
-                                    <div class="price">$5</div>
-                                    <div class="buy">add to cart</div>
-                                </div>
-                            </div>
-                            <div class="fooditem">
-                                <img src="./assets/images/24.jpg" alt="" class="food-img">
-                                <h4 class="food-tittle">Lorem Ipsum</h4>
-
-
-
-                                <p class="food-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                </p>
-                                <div class="desc">
-                                    <div class="price">$15</div>
-                                    <div class="buy">add to cart</div>
-                                </div>
-                            </div>
-                            <div class="fooditem">
-                                <img src="./assets/images/25.jpg" alt="" class="food-img">
-                                <h4 class="food-tittle">Lorem Ipsum</h4>
-
-
-                                <p class="food-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                </p>
-                                <div class="desc">
-                                    <div class="price">$5</div>
-                                    <div class="buy">add to cart</div>
-                                </div>
-                            </div>
-                            <div class="fooditem">
-                                <img src="./assets/images/28.jpg" alt="" class="food-img">
-                                <h4 class="food-tittle">Lorem Ipsum</h4>
-
-
-
-                                <p class="food-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                </p>
-                                <div class="desc">
-                                    <div class="price">$15</div>
-                                    <div class="buy">add to cart</div>
-                                </div>
-                            </div>
-                            <div class="fooditem">
-                                <img src="./assets/images/31.jpg" alt="" class="food-img">
-                                <h4 class="food-tittle">Lorem Ipsum</h4>
-
-
-                                <p class="food-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                </p>
-                                <div class="desc">
-                                    <div class="price">$5</div>
-                                    <div class="buy">add to cart</div>
-                                </div>
-                            </div>
-                    </div>
-                </div>
-                <div class="tab_wrap" style="display: none;">
-                    <div class="tab_content">
-                        
-                        <div class="fooditem">
-                            <img src="./assets/images/18.jpg" alt="" class="food-img">
-                            <h4 class="food-tittle">Lorem Ipsum</h4>
-
-
-
-                                <p class="food-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                            <div class="desc">
-                                <div class="price">$15</div>
-                                <div class="buy">add to cart</div>
-                            </div>
+            <div class="tab_content">
+                <?php
+                    $sql="SELECT * FROM menu order by id desc";
+                    $query=mysqli_query($db,$sql);		
+                    if(!mysqli_num_rows($query) > 0 )
+                    {
+                    echo '<td colspan="7"><center>No caterories</center></td>';
+                    }
+                    else
+                    {				
+                    while($rows=mysqli_fetch_array($query))
+                    {									
+                     echo '
+                     <form method="post" action="orders.php'.$row['id'].'">
+                        <div class="inputs">
+                            <input type="hidden" name="title" value="'.$rows['title'].'">
+                            <input type="hidden" name="price" value="'.$rows['price'].'">
                         </div>
                         <div class="fooditem">
-                            <img src="./assets/images/19.jpg" alt="" class="food-img">
-                            <h4 class="food-tittle">Lorem Ipsum</h4>
-
-
-                                <p class="food-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                            <img src="./admin/image/'.$rows['image'].'"style="height:150px;width:150px;" />
+                            <h2 class="food-tittle">'.$rows['title'].'</h2>
+                            <p class="food-desc">'.$rows['slogan'].'</p>
                             <div class="desc">
-                                <div class="price">$5</div>
-                                <div class="buy">add to cart</div>
+                                <div class="price">$'.number_format($rows['price'],2).'</div>
+                                <div class="buy">
+                                    <input type="submit" id="buttn" name="add_to_cart" value="add to cart" />
+                                </div>
                             </div>
                         </div>
-                        <div class="fooditem">
-                            <img src="./assets/images/20.jpg" alt="" class="food-img">
-                            <h4 class="food-tittle">Lorem Ipsum</h4>
-
-
-
-                                <p class="food-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-                            <div class="desc">
-                                <div class="price">$15</div>
-                                <div class="buy">add to cart</div>
-                            </div>
-                        </div>
-                        <div class="fooditem">
-                            <img src="./assets/images/22.jpg" alt="" class="food-img">
-                            <h4 class="food-tittle">Lorem Ipsum</h4>
-
-
-                                <p class="food-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                            <div class="desc">
-                                <div class="price">$5</div>
-                                <div class="buy">add to cart</div>
-                            </div>
-                        </div>
-                        <div class="fooditem">
-                            <img src="./assets/images/30.jpg" alt="" class="food-img">
-                            <h4 class="food-tittle">Lorem Ipsum</h4>
-
-
-
-                                <p class="food-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                            <div class="desc">
-                                <div class="price">$15</div>
-                                <div class="buy">add to cart</div>
-                            </div>
-                        </div>
-                        <div class="fooditem">
-                            <img src="./assets/images/27.jpg" alt="" class="food-img">
-                            <h4 class="food-tittle">Lorem Ipsum</h4>
-
-
-                                <p class="food-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                            <div class="desc">
-                                <div class="price">$5</div>
-                                <div class="buy">add to cart</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    </form>
+                    ';
+                    }	
+                   }
+                ?>
             </div>
         </div>
 	<?php

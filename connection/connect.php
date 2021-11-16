@@ -1,11 +1,17 @@
 <?php
 
 //main connection file for both admin & front end
-$servername = "localhost"; //server
-$username = "root"; //username
-$password = ""; //password
-$dbname = "irio_ciitu";  //database
+//$servername = "localhost"; //server
+//$username = "root"; //username
+//$password = ""; //password
+//$dbname = "irio_ciitu";  //database
 
+
+//main connection file for both admin & front end
+$servername = "remotemysql.com"; //server
+$username = "bkiXbdlYga"; //username
+$password = "PnvIIeX3Tn"; //password
+$dbname = "bkiXbdlYga";  //database
 // Create connection
 $db = mysqli_connect($servername, $username, $password, $dbname); // connecting 
 // Check connection

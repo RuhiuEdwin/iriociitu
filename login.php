@@ -27,14 +27,12 @@
 						if(empty($_SESSION["user_id"]))
 							{
 								echo '<li ><a href="login.php" class="navbar_link">login</a> </li>
-							  <li ><a href="registration.php" class="navbar_link">signup</a> </li>';
+							  <li ><a href="login.php" class="navbar_link">signup</a> </li>';
 							}
 						else
 							{
-									
-									
-										echo  '<li ><a href="your_orders.php" class="navbar_link">your orders</a> </li>';
-									echo  '<li ><a href="logout.php" class="navbar_link">logout</a> </li>';
+								echo  '<li ><a href="your_orders.php" class="navbar_link">your orders</a> </li>';
+								echo  '<li ><a href="logout.php" class="navbar_link">logout</a> </li>';
 							}
 
 						?>
@@ -67,7 +65,7 @@
 		}	
 	}
 
-	if(isset($_POST['submit'] ))
+	if(isset($_POST['signup'] ))
 	{
 
 		$mql = "INSERT INTO users(username,f_name,l_name,email,phone,password,address) VALUES('".$_POST['uname']."','".$_POST['fname']."','".$_POST['lname']."','".$_POST['email']."','".$_POST['phone']."','".md5($_POST['password'])."','".$_POST['address']."')";
@@ -110,46 +108,20 @@
 								<h1 class="title">
 									Sign-in
 								</h1>
-								<input type="text" placeholder="username" name="uname">
-								<input type="text" placeholder="first name" name="fname">
-								<input type="text" placeholder="last name" name="lname">
-								<input type="phone" placeholder="phone number" name="phone">
-								<input type="email" placeholder="email address" name="email">
-								<input type="password" placeholder="password" name="password">
-								<input type="text" placeholder="address" name="address">
-   								<input type="submit" id="buttn" name="submit" value="sign up" />
+								<input type="text" placeholder="username" name="uname" required>
+								<input type="text" placeholder="first name" name="fname" required>
+								<input type="text" placeholder="last name" name="lname" required>
+								<input type="phone" placeholder="phone number" name="phone" required>
+								<input type="email" placeholder="email address" name="email" required>
+								<input type="password" placeholder="password" name="password" required>
+								<input type="text" placeholder="address" name="address" required>
+   								<input type="submit" id="buttn" name="signup" value="sign up" />
 							</form>  
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<?php
-		if(isset($_POST['submit']))
-		{
-			$email = $_POST['email'];
-			$phone = $_POST['phone'];
-			$address = $_POST['address'];
-			$username = $_POST['username'];
-			$password = $_POST['password'];
-
-			$sql = "INSERT INTO users SET
-				email='$email',
-				phone='$phone',
-				address='$address',
-				username='$username',
-				password='$password'
-			";
-			$res = mysqli_query($conn, $sql) or die(mysqli_error());
-			if($res==TRUE)
-			{
-				echo "data inserted";
-			}
-			else{
-				echo "failed";
-			}
-		}
-	?>
 	<?php
 		include("./partials/global.php")
 	?>

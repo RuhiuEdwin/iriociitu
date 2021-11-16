@@ -1,30 +1,42 @@
 <html>
 <?php
+    session_start();
+    error_reporting(0);
+    include("../connection/connect.php");
 
-session_start();
-error_reporting(0);
-include("../connection/connect.php");
-
-
-if(isset($_POST['submit'] ))
-{
-    if(isset($_FILES['image']['name']))
+    if(isset($_POST['submit'] ))
     {
-        $image = $_FILES['image']['name'];
-        $source_path = $_FILES['images']['tmp_name'];
-        $destination_path = "../assets/images/menu/".$image;
-
-        $upload = move_uploaded_file($source_path, $destination_path);
+        if(empty($_POST['title']) ||
+        empty($_POST['description'])|| 
+        empty($_POST['price']) ||  
+        empty($_POST['image']))
+        {
+            $error = '<div class="error">
+                <strong>All fields Required!</strong>
+            </div>';
+        }
+        else
+        {   
+            $check_title= mysqli_query($db, "SELECT title FROM menu where title = '".$_POST['title']."' ");
+            $check_image = mysqli_query($db, "SELECT image FROM menu where image = '".$_POST['image']."' ");
+        }
+        if(isset($_FILES['image']['name']))
+        {
+            $fname = $_FILES['image']['name'];
+            $temp = $_FILES['image']['tmp_name'];
+            $fsize = $_FILES['image']['size'];
+            $extension = explode('.',$fname);
+            $extension = strtolower(end($extension));  
+            $fnew = uniqid().'.'.$extension;
+            $store = "image/".basename($fnew); 
+        }
+        else
+        {
+            $mql = "INSERT INTO menu (title,slogan,price,image,category) VALUES('".$_POST['title']."','".$_POST['description']."','".$_POST['price']."','".$fnew."','".$_POST['c_name']."')";
+            mysqli_query($db, $mql);
+            move_uploaded_file($temp, $store);
+        }
     }
-
-	$mql = "INSERT INTO menu (title,slogan,price,image,category) VALUES('".$_POST['title']."','".$_POST['description']."','".$_POST['price']."','".$_POST['image']."','".$_POST['c_name']."')";
-	mysqli_query($db, $mql);
-    $mql = "INSERT INTO c_name(title,slogan,price,image) VALUES('".$_POST['title']."','".$_POST['description']."','".$_POST['price']."','".$_POST['image']."')";
-	mysqli_query($db, $mql);
-
-}
-
-
 ?>
     <head>
         <meta charset="UTF-8">
@@ -56,10 +68,10 @@ if(isset($_POST['submit'] ))
                 </a>
             </div>
             <form action="" method="post" enctype="multipart/form-data">
-                <input type="text"  name="title" placeholder="title">
-                <input type="text"  name="description" placeholder="description">
-                <input type="text"  name="price" placeholder="price">
-                <input type="file"  name="image" src="" alt="" placeholder="image" value="image">
+                <input type="text"  name="title" placeholder="title" required>
+                <input type="text"  name="description" placeholder="description" required>
+                <input type="text"  name="price" placeholder="price" required>
+                <input type="file"  name="image" src="" alt="" placeholder="image" required>
                 <select name="c_name" class="option" data-placeholder="Choose a Category" tabindex="1">
                     <option>--Select category--</option>
                     <?php $ssql ="select * from category";

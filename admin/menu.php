@@ -64,10 +64,10 @@
                                                 echo ' <tr><td>'.$rows['title'].'</td>
                                                 <td>'.$rows['slogan'].'</td>
                                                 <td>'.$rows['price'].'</td>
-                                                <td>'.$rows['image'].'</td>
+                                                <td><img src="image/'.$rows['image'].'"style="max-height:100px;max-width:150px;" /></td>
                                                 <td>'.$rows['category'].'</td>
-                                                <td><a href="delete_menu.php?menu_del='.$rows['u_id'].'" class="btn btn-danger btn-flat btn-addon btn-xs m-b-10"><i class="fa fa-trash-o" style="font-size:16px"></i>delete</a> 
-                                                <a href="update_menu.php?menu_upd='.$rows['u_id'].'" " class="btn btn-info btn-flat btn-addon btn-sm m-b-10 m-l-5"><i class="ti-settings"></i>update</a>
+                                                <td><a href="delete_menu.php?menu_del='.$rows['id'].'" class="btn btn-danger btn-flat btn-addon btn-xs m-b-10"><i class="fa fa-trash-o" style="font-size:16px"></i>delete</a> 
+                                                <a href="update_menu.php?menu_upd='.$rows['id'].'" " class="btn btn-info btn-flat btn-addon btn-sm m-b-10 m-l-5"><i class="ti-settings"></i>update</a>
                                                 </td></tr>';
                                                 }	
                                                 }

@@ -1,20 +1,20 @@
 <html>
 <?php
-
-session_start();
-error_reporting(0);
-include("../connection/connect.php");
-
-
-if(isset($_POST['submit'] ))
-{
-
-	$mql = "INSERT INTO category(c_name) VALUES('".$_POST['category']."')";
-	mysqli_query($db, $mql);
-
-}
-
-
+    session_start();
+    error_reporting(0);
+    include("../connection/connect.php");
+    if(isset($_POST['submit'] ))
+    {
+        if(empty($_POST['category']))
+            {
+                $error = '<div class="error"><strong>All fields Required!</strong></div>';
+            }
+            else{
+                $mql = "INSERT INTO category(c_name) VALUES('".$_POST['category']."')";
+                mysqli_query($db, $mql);
+                $success = 	'<div class="error"><strong>Congrass!</strong> New User Added Successfully.</br></div>';}
+            }
+    }
 ?>
     <head>
         <meta charset="UTF-8">
